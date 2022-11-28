@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3 class="no-item" text-center *ngIf="items.length === 0">
+    No Items available on the list!
+  </h3>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let item of items, let i = index">
+      <ion-list>
+        <ion-item>
+          <ion-label> {{item.name}}</ion-label>
+          
+          <ion-text slot="end">{{item.quantity}}</ion-text>
+        </ion-item>
+      </ion-list>
+      <ion-item-options>
+        <ion-button (click)="editItem(item, i)"
+          
+          color="primary"
+          icon-start
+        >
+          <ion-icon  color="primary" name="create"> </ion-icon>
+          Edit
+        </ion-button>
+
+        <ion-button
+          (click)="shareItem(item, i)"
+          color="light"
+          class ='icon-start'
+        >
+          <ion-icon name="share"> </ion-icon>
+          Share
+        </ion-button>
+
+        <ion-button
+          (click)="removeItem(item, i)"
+          color="secondary"
+          class ='icon-start'
+        >
+          <ion-icon name="trash"> </ion-icon>
+          Done
+        </ion-button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addItem()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
